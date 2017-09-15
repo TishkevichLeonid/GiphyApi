@@ -9,6 +9,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class GiphyData {
 
+    @SerializedName("images")
+    @Expose
+    private Images images;
     @SerializedName("type")
     @Expose
     private String type;
@@ -184,5 +187,13 @@ public class GiphyData {
 
     public void setTrendingDatetime(String trendingDatetime) {
         this.trendingDatetime = trendingDatetime;
+    }
+
+    public Images getImages() {
+        return images;
+    }
+
+    public void setImages(Images images) {
+        this.images = images;
     }
 }
