@@ -15,75 +15,48 @@ public class GiphyData {
     @SerializedName("id")
     @Expose
     private String id;
+    @SerializedName("slug")
+    @Expose
+    private String slug;
     @SerializedName("url")
     @Expose
     private String url;
-    @SerializedName("image_original_url")
+    @SerializedName("bitly_gif_url")
     @Expose
-    private String imageOriginalUrl;
-    @SerializedName("image_url")
+    private String bitlyGifUrl;
+    @SerializedName("bitly_url")
     @Expose
-    private String imageUrl;
-    @SerializedName("image_mp4_url")
+    private String bitlyUrl;
+    @SerializedName("embed_url")
     @Expose
-    private String imageMp4Url;
-    @SerializedName("image_frames")
-    @Expose
-    private String imageFrames;
-    @SerializedName("image_width")
-    @Expose
-    private String imageWidth;
-    @SerializedName("image_height")
-    @Expose
-    private String imageHeight;
-    @SerializedName("fixed_height_downsampled_url")
-    @Expose
-    private String fixedHeightDownsampledUrl;
-    @SerializedName("fixed_height_downsampled_width")
-    @Expose
-    private String fixedHeightDownsampledWidth;
-    @SerializedName("fixed_height_downsampled_height")
-    @Expose
-    private String fixedHeightDownsampledHeight;
-    @SerializedName("fixed_width_downsampled_url")
-    @Expose
-    private String fixedWidthDownsampledUrl;
-    @SerializedName("fixed_width_downsampled_width")
-    @Expose
-    private String fixedWidthDownsampledWidth;
-    @SerializedName("fixed_width_downsampled_height")
-    @Expose
-    private String fixedWidthDownsampledHeight;
-    @SerializedName("fixed_height_small_url")
-    @Expose
-    private String fixedHeightSmallUrl;
-    @SerializedName("fixed_height_small_still_url")
-    @Expose
-    private String fixedHeightSmallStillUrl;
-    @SerializedName("fixed_height_small_width")
-    @Expose
-    private String fixedHeightSmallWidth;
-    @SerializedName("fixed_height_small_height")
-    @Expose
-    private String fixedHeightSmallHeight;
-    @SerializedName("fixed_width_small_url")
-    @Expose
-    private String fixedWidthSmallUrl;
-    @SerializedName("fixed_width_small_still_url")
-    @Expose
-    private String fixedWidthSmallStillUrl;
-    @SerializedName("fixed_width_small_width")
-    @Expose
-    private String fixedWidthSmallWidth;
-    @SerializedName("fixed_width_small_height")
-    @Expose
-    private String fixedWidthSmallHeight;
+    private String embedUrl;
     @SerializedName("username")
     @Expose
     private String username;
-    @SerializedName("caption")
+    @SerializedName("source")
     @Expose
-    private String caption;
+    private String source;
+    @SerializedName("rating")
+    @Expose
+    private String rating;
+    @SerializedName("content_url")
+    @Expose
+    private String contentUrl;
+    @SerializedName("source_tld")
+    @Expose
+    private String sourceTld;
+    @SerializedName("source_post_url")
+    @Expose
+    private String sourcePostUrl;
+    @SerializedName("is_indexable")
+    @Expose
+    private Integer isIndexable;
+    @SerializedName("import_datetime")
+    @Expose
+    private String importDatetime;
+    @SerializedName("trending_datetime")
+    @Expose
+    private String trendingDatetime;
 
     public String getType() {
         return type;
@@ -101,6 +74,14 @@ public class GiphyData {
         this.id = id;
     }
 
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
+
     public String getUrl() {
         return url;
     }
@@ -109,164 +90,28 @@ public class GiphyData {
         this.url = url;
     }
 
-    public String getImageOriginalUrl() {
-        return imageOriginalUrl;
+    public String getBitlyGifUrl() {
+        return bitlyGifUrl;
     }
 
-    public void setImageOriginalUrl(String imageOriginalUrl) {
-        this.imageOriginalUrl = imageOriginalUrl;
+    public void setBitlyGifUrl(String bitlyGifUrl) {
+        this.bitlyGifUrl = bitlyGifUrl;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getBitlyUrl() {
+        return bitlyUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setBitlyUrl(String bitlyUrl) {
+        this.bitlyUrl = bitlyUrl;
     }
 
-    public String getImageMp4Url() {
-        return imageMp4Url;
+    public String getEmbedUrl() {
+        return embedUrl;
     }
 
-    public void setImageMp4Url(String imageMp4Url) {
-        this.imageMp4Url = imageMp4Url;
-    }
-
-    public String getImageFrames() {
-        return imageFrames;
-    }
-
-    public void setImageFrames(String imageFrames) {
-        this.imageFrames = imageFrames;
-    }
-
-    public String getImageWidth() {
-        return imageWidth;
-    }
-
-    public void setImageWidth(String imageWidth) {
-        this.imageWidth = imageWidth;
-    }
-
-    public String getImageHeight() {
-        return imageHeight;
-    }
-
-    public void setImageHeight(String imageHeight) {
-        this.imageHeight = imageHeight;
-    }
-
-    public String getFixedHeightDownsampledUrl() {
-        return fixedHeightDownsampledUrl;
-    }
-
-    public void setFixedHeightDownsampledUrl(String fixedHeightDownsampledUrl) {
-        this.fixedHeightDownsampledUrl = fixedHeightDownsampledUrl;
-    }
-
-    public String getFixedHeightDownsampledWidth() {
-        return fixedHeightDownsampledWidth;
-    }
-
-    public void setFixedHeightDownsampledWidth(String fixedHeightDownsampledWidth) {
-        this.fixedHeightDownsampledWidth = fixedHeightDownsampledWidth;
-    }
-
-    public String getFixedHeightDownsampledHeight() {
-        return fixedHeightDownsampledHeight;
-    }
-
-    public void setFixedHeightDownsampledHeight(String fixedHeightDownsampledHeight) {
-        this.fixedHeightDownsampledHeight = fixedHeightDownsampledHeight;
-    }
-
-    public String getFixedWidthDownsampledUrl() {
-        return fixedWidthDownsampledUrl;
-    }
-
-    public void setFixedWidthDownsampledUrl(String fixedWidthDownsampledUrl) {
-        this.fixedWidthDownsampledUrl = fixedWidthDownsampledUrl;
-    }
-
-    public String getFixedWidthDownsampledWidth() {
-        return fixedWidthDownsampledWidth;
-    }
-
-    public void setFixedWidthDownsampledWidth(String fixedWidthDownsampledWidth) {
-        this.fixedWidthDownsampledWidth = fixedWidthDownsampledWidth;
-    }
-
-    public String getFixedWidthDownsampledHeight() {
-        return fixedWidthDownsampledHeight;
-    }
-
-    public void setFixedWidthDownsampledHeight(String fixedWidthDownsampledHeight) {
-        this.fixedWidthDownsampledHeight = fixedWidthDownsampledHeight;
-    }
-
-    public String getFixedHeightSmallUrl() {
-        return fixedHeightSmallUrl;
-    }
-
-    public void setFixedHeightSmallUrl(String fixedHeightSmallUrl) {
-        this.fixedHeightSmallUrl = fixedHeightSmallUrl;
-    }
-
-    public String getFixedHeightSmallStillUrl() {
-        return fixedHeightSmallStillUrl;
-    }
-
-    public void setFixedHeightSmallStillUrl(String fixedHeightSmallStillUrl) {
-        this.fixedHeightSmallStillUrl = fixedHeightSmallStillUrl;
-    }
-
-    public String getFixedHeightSmallWidth() {
-        return fixedHeightSmallWidth;
-    }
-
-    public void setFixedHeightSmallWidth(String fixedHeightSmallWidth) {
-        this.fixedHeightSmallWidth = fixedHeightSmallWidth;
-    }
-
-    public String getFixedHeightSmallHeight() {
-        return fixedHeightSmallHeight;
-    }
-
-    public void setFixedHeightSmallHeight(String fixedHeightSmallHeight) {
-        this.fixedHeightSmallHeight = fixedHeightSmallHeight;
-    }
-
-    public String getFixedWidthSmallUrl() {
-        return fixedWidthSmallUrl;
-    }
-
-    public void setFixedWidthSmallUrl(String fixedWidthSmallUrl) {
-        this.fixedWidthSmallUrl = fixedWidthSmallUrl;
-    }
-
-    public String getFixedWidthSmallStillUrl() {
-        return fixedWidthSmallStillUrl;
-    }
-
-    public void setFixedWidthSmallStillUrl(String fixedWidthSmallStillUrl) {
-        this.fixedWidthSmallStillUrl = fixedWidthSmallStillUrl;
-    }
-
-    public String getFixedWidthSmallWidth() {
-        return fixedWidthSmallWidth;
-    }
-
-    public void setFixedWidthSmallWidth(String fixedWidthSmallWidth) {
-        this.fixedWidthSmallWidth = fixedWidthSmallWidth;
-    }
-
-    public String getFixedWidthSmallHeight() {
-        return fixedWidthSmallHeight;
-    }
-
-    public void setFixedWidthSmallHeight(String fixedWidthSmallHeight) {
-        this.fixedWidthSmallHeight = fixedWidthSmallHeight;
+    public void setEmbedUrl(String embedUrl) {
+        this.embedUrl = embedUrl;
     }
 
     public String getUsername() {
@@ -277,12 +122,67 @@ public class GiphyData {
         this.username = username;
     }
 
-    public String getCaption() {
-        return caption;
+    public String getSource() {
+        return source;
     }
 
-    public void setCaption(String caption) {
-        this.caption = caption;
+    public void setSource(String source) {
+        this.source = source;
     }
 
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public String getContentUrl() {
+        return contentUrl;
+    }
+
+    public void setContentUrl(String contentUrl) {
+        this.contentUrl = contentUrl;
+    }
+
+    public String getSourceTld() {
+        return sourceTld;
+    }
+
+    public void setSourceTld(String sourceTld) {
+        this.sourceTld = sourceTld;
+    }
+
+    public String getSourcePostUrl() {
+        return sourcePostUrl;
+    }
+
+    public void setSourcePostUrl(String sourcePostUrl) {
+        this.sourcePostUrl = sourcePostUrl;
+    }
+
+    public Integer getIsIndexable() {
+        return isIndexable;
+    }
+
+    public void setIsIndexable(Integer isIndexable) {
+        this.isIndexable = isIndexable;
+    }
+
+    public String getImportDatetime() {
+        return importDatetime;
+    }
+
+    public void setImportDatetime(String importDatetime) {
+        this.importDatetime = importDatetime;
+    }
+
+    public String getTrendingDatetime() {
+        return trendingDatetime;
+    }
+
+    public void setTrendingDatetime(String trendingDatetime) {
+        this.trendingDatetime = trendingDatetime;
+    }
 }

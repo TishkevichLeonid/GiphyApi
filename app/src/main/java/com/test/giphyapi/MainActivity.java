@@ -4,8 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.test.giphyapi.Model.GiphyData;
+import com.test.giphyapi.Model.Message;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,18 +23,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextView = (TextView) findViewById(R.id.gif_url);
+        mTextView = (TextView) findViewById(R.id.url);
 
-        App.getGiphyApi().getGiphy(API_KEY, "", "G").enqueue(new Callback<GiphyData>() {
+        getGifbyId();
+    }
+
+    private void getGifbyId(){
+        App.getGiphyApi().getGiphybyID(API_KEY).enqueue(new Callback<Message>() {
             @Override
-            public void onResponse(Call<GiphyData> call, Response<GiphyData> response) {
+            public void onResponse(Call<Message> call, Response<Message> response) {
+                try {
+                    mTextView.append(response.body().getData().getId());
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
                 Log.e("onResponse", response.toString());
-                mTextView.setText(response.body().getImageUrl());
+                Toast.makeText(MainActivity.this, "is connected", Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onFailure(Call<GiphyData> call, Throwable t) {
+            public void onFailure(Call<Message> call, Throwable t) {
                 Log.e("fail", t.toString());
+                Toast.makeText(MainActivity.this, "is not connected", Toast.LENGTH_SHORT).show();
             }
         });
     }

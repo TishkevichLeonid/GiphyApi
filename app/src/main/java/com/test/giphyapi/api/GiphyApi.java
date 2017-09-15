@@ -1,6 +1,7 @@
 package com.test.giphyapi.api;
 
 import com.test.giphyapi.Model.GiphyData;
+import com.test.giphyapi.Model.Message;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -18,5 +19,8 @@ public interface GiphyApi {
                              @Query("tag") String tagQuery,
                              @Query("rating") String rating
                              );
+
+    @GET("v1/gifs/bv7Ake0xnTaOA")
+    Call<Message> getGiphybyID(@Query("api_key") String apiKey);
 
 }
