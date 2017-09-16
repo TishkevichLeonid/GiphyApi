@@ -2,6 +2,7 @@ package com.test.giphyapi.api;
 
 import com.test.giphyapi.Model.GiphyData;
 import com.test.giphyapi.Model.Message;
+import com.test.giphyapi.Model.MessageList;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -22,5 +23,9 @@ public interface GiphyApi {
 
     @GET("v1/gifs/FiGiRei2ICzzG")
     Call<Message> getGiphybyID(@Query("api_key") String apiKey);
+
+    @GET("v1/gifs/search")
+    Call<MessageList> getGifBySearch(@Query("q") String querySearch,
+                                     @Query("api_key") String apiKey);
 
 }

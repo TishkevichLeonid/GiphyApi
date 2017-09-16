@@ -1,6 +1,5 @@
 package com.test.giphyapi.Model;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -10,7 +9,6 @@ import com.google.gson.annotations.SerializedName;
 public class Message {
 
     @SerializedName("data")
-    @Expose
     private GiphyData data;
 
     public GiphyData getData() {
@@ -20,4 +18,5 @@ public class Message {
     public void setData(GiphyData data) {
         this.data = data;
     }
+
 }

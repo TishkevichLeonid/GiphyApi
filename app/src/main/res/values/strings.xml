@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GiphyApi</string>
+    <string name="hint_query">Enter the query</string>
 </resources>
