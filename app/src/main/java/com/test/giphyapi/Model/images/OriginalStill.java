@@ -1,4 +1,4 @@
-package com.test.giphyapi.Model;
+package com.test.giphyapi.Model.images;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

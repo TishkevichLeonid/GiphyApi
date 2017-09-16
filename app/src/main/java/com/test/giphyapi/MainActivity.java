@@ -31,15 +31,6 @@ public class MainActivity extends AppCompatActivity {
         mGifImage = (ImageView) findViewById(R.id.gif_image_view);
 
         getGifbyId();
-
-        Glide.with(this)
-               // .load("https://media1.giphy.com/media/bv7Ake0xnTaOA/200_s.gif")
-                .load("http://i.imgur.com/Vth6CBz.gif")
-                .asGif()
-                .placeholder(R.drawable.a1)
-                .error(R.drawable.a2)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .into(mGifImage);
     }
 
     private void getGifbyId(){
@@ -48,7 +39,15 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<Message> call, Response<Message> response) {
                 try {
                     mTextView.setText(response.body().getData().
-                            getImages().getOriginalStill().getUrl());
+                            getImages().getOriginal().getUrl());
+                    Glide.with(MainActivity.this)
+                            .load(response.body().getData().getImages().getOriginal().getUrl())
+                            .asGif()
+                            .placeholder(R.drawable.a1)
+                            .error(R.drawable.a2)
+                            .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                            .into(mGifImage);
+
                 } catch (Exception e){
                     e.printStackTrace();
                 }
