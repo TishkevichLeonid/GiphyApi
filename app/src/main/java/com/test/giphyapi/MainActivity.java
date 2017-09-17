@@ -1,11 +1,13 @@
 package com.test.giphyapi;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "onResponse";
     private static final String API_KEY = "09a3c886915b48bda73ad6f747d0f72c";
+    private static final String KEY_QUERY = "query_key";
 
     private String querySearch = "funny cat";
     private EditText mSearchText;
@@ -50,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         mListAdapter = new ListAdapter(mGiphyDataList, this);
         mRecyclerView.setAdapter(mListAdapter);
         mListAdapter.notifyDataSetChanged();
+        Log.e(TAG, "2nd " + String.valueOf(mGiphyDataList.size()));
 
         mSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,9 +66,15 @@ public class MainActivity extends AppCompatActivity {
                     getGifBySearch();
                     mListAdapter.setGiphyDataList(mGiphyDataList);
                     mListAdapter.notifyDataSetChanged();
+                    InputMethodManager inputMethodManager = (InputMethodManager) MainActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+                    inputMethodManager.hideSoftInputFromWindow(MainActivity.this.getCurrentFocus().getWindowToken(), 0);
                 }
             }
         });
+
+        if (savedInstanceState != null){
+            querySearch = savedInstanceState.getString(KEY_QUERY);
+        }
     }
 
     private void getGifBySearch(){
@@ -76,7 +86,13 @@ public class MainActivity extends AppCompatActivity {
                     for (GiphyData all: response.body().getDataList()){
                         mGiphyDataList.add(all);
                     }
-                    Log.e(TAG, String.valueOf(mGiphyDataList.size()));
+                    if (mListAdapter == null){
+                        mListAdapter = new ListAdapter(mGiphyDataList, MainActivity.this);
+                    } else {
+                        mListAdapter.setGiphyDataList(mGiphyDataList);
+                        mListAdapter.notifyDataSetChanged();
+                    }
+                    Log.e(TAG, "1st " + String.valueOf(mGiphyDataList.size()));
                 } catch (Exception e){
                     e.printStackTrace();
                 }
@@ -87,5 +103,11 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "is not connected", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(KEY_QUERY, querySearch);
     }
 }
