@@ -3,13 +3,12 @@ package com.test.giphyapi;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.Toast;
 
 import com.test.giphyapi.Model.GiphyData;
@@ -32,8 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText mSearchText;
     private Button mSearchButton;
     private List<GiphyData> mGiphyDataList;
-    private RecyclerView mRecyclerView;
-    private ListAdapter mListAdapter;
+    private GifAdapter mGifAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,18 +40,14 @@ public class MainActivity extends AppCompatActivity {
 
         mSearchText = (EditText) findViewById(R.id.edit_text_search);
         mSearchButton = (Button) findViewById(R.id.button_search_query);
+        GridView gridView = (GridView) findViewById(R.id.gridView1);
         mGiphyDataList = new ArrayList<>();
-
-        mRecyclerView = (RecyclerView) findViewById(R.id.gif_recycle_view);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(layoutManager);
 
         getGifBySearch();
 
-        mListAdapter = new ListAdapter(mGiphyDataList, this);
-        mRecyclerView.setAdapter(mListAdapter);
-        mListAdapter.notifyDataSetChanged();
-        Log.e(TAG, "2nd " + String.valueOf(mGiphyDataList.size()));
+        mGifAdapter = new GifAdapter(this, mGiphyDataList);
+        gridView.setAdapter(mGifAdapter);
+        mGifAdapter.notifyDataSetChanged();
 
         mSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
                     mGiphyDataList.clear();
                     querySearch = mSearchText.getText().toString();
                     getGifBySearch();
-                    mListAdapter.setGiphyDataList(mGiphyDataList);
-                    mListAdapter.notifyDataSetChanged();
+                    mGifAdapter.setGiphyDataList(mGiphyDataList);
+                    mGifAdapter.notifyDataSetChanged();
                     InputMethodManager inputMethodManager = (InputMethodManager) MainActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
                     inputMethodManager.hideSoftInputFromWindow(MainActivity.this.getCurrentFocus().getWindowToken(), 0);
                 }
@@ -86,11 +80,11 @@ public class MainActivity extends AppCompatActivity {
                     for (GiphyData all: response.body().getDataList()){
                         mGiphyDataList.add(all);
                     }
-                    if (mListAdapter == null){
-                        mListAdapter = new ListAdapter(mGiphyDataList, MainActivity.this);
+                    if (mGifAdapter == null){
+                        mGifAdapter = new GifAdapter(MainActivity.this, mGiphyDataList);
                     } else {
-                        mListAdapter.setGiphyDataList(mGiphyDataList);
-                        mListAdapter.notifyDataSetChanged();
+                        mGifAdapter.setGiphyDataList(mGiphyDataList);
+                        mGifAdapter.notifyDataSetChanged();
                     }
                     Log.e(TAG, "1st " + String.valueOf(mGiphyDataList.size()));
                 } catch (Exception e){
